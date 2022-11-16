@@ -52,6 +52,7 @@
     <Compile Include="diagnostic.Designer.cs">
       <DependentUpon>diagnostic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Functions.cs" />
     <Compile Include="Tests.cs">
       <SubType>Form</SubType>
     </Compile>
