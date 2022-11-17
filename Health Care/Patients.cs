@@ -53,6 +53,7 @@ namespace Health_Care
                 Query = string.Format(Query, Patient, Gender, BDate, Phone);
                 Con.SetData(Query);
                 ShowPatients();
+                Clear();
                 MessageBox.Show("Patient Added!");
             }
         }
@@ -84,15 +85,24 @@ namespace Health_Care
             {
                 string Patient = PatNameTb.Text;
                 string Gender = GenCb.SelectedItem.ToString();
-                string BDate = DOBTb.Value.Date.ToString();
+                string DDate = DOBTb.Value.Date.ToString();
                 string Phone = PatPhoneTb.Text;
                 string Address = PatAddTb.Text;
                 string Query = "update Table set PatName = '{0}',PatGen = '{1}',PatDob = '{2}',PatPhone = '{3}',PatAdd = '{4}' where PatCode = {5}";
-                Query = string.Format(Query, Patient, Gender, BDate, Phone, Address,Key);
+                Query = string.Format(Query, Patient, Gender, DDate, Phone, Address,Key);
                 Con.SetData(Query);
                 ShowPatients();
+                Clear();
                 MessageBox.Show("Patient Updated!");
             }
+        }
+
+        private void Clear()
+        {
+            PatNameTb.Text = "";
+            GenCb.SelectedIndex = -1;
+            PatPhoneTb.Text = "";
+            PatAddTb.Text = "";
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
@@ -107,6 +117,7 @@ namespace Health_Care
                 Query = string.Format(Query,Key);
                 Con.SetData(Query);
                 ShowPatients();
+                Clear();
                 MessageBox.Show("Patient Deleted!");
             }
         }

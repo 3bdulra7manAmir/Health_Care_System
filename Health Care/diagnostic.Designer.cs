@@ -31,21 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(diagnostic));
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DeleteBtn = new System.Windows.Forms.Button();
+            this.SaveBtn = new System.Windows.Forms.Button();
+            this.EditBtn = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.CostTb = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.ResultTb = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.DiagDateTb = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,7 +60,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.PatientCb = new System.Windows.Forms.ComboBox();
+            this.TestCb = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -97,41 +97,44 @@
             this.label12.TabIndex = 25;
             this.label12.Text = "Diagnosis List";
             // 
-            // button3
+            // DeleteBtn
             // 
-            this.button3.BackColor = System.Drawing.Color.Orange;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(996, 193);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 37);
-            this.button3.TabIndex = 24;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = false;
+            this.DeleteBtn.BackColor = System.Drawing.Color.Orange;
+            this.DeleteBtn.FlatAppearance.BorderSize = 0;
+            this.DeleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteBtn.Location = new System.Drawing.Point(996, 193);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(90, 37);
+            this.DeleteBtn.TabIndex = 24;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = false;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
-            // button2
+            // SaveBtn
             // 
-            this.button2.BackColor = System.Drawing.Color.Orange;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(996, 145);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 37);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = false;
+            this.SaveBtn.BackColor = System.Drawing.Color.Orange;
+            this.SaveBtn.FlatAppearance.BorderSize = 0;
+            this.SaveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveBtn.Location = new System.Drawing.Point(996, 145);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(90, 37);
+            this.SaveBtn.TabIndex = 23;
+            this.SaveBtn.Text = "Save";
+            this.SaveBtn.UseVisualStyleBackColor = false;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
-            // button1
+            // EditBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.Orange;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(996, 92);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 37);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Edit";
-            this.button1.UseVisualStyleBackColor = false;
+            this.EditBtn.BackColor = System.Drawing.Color.Orange;
+            this.EditBtn.FlatAppearance.BorderSize = 0;
+            this.EditBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditBtn.Location = new System.Drawing.Point(996, 92);
+            this.EditBtn.Name = "EditBtn";
+            this.EditBtn.Size = new System.Drawing.Size(90, 37);
+            this.EditBtn.TabIndex = 22;
+            this.EditBtn.Text = "Edit";
+            this.EditBtn.UseVisualStyleBackColor = false;
+            this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
             // 
             // label13
             // 
@@ -155,12 +158,13 @@
             this.label10.TabIndex = 19;
             this.label10.Text = "Cost";
             // 
-            // textBox3
+            // CostTb
             // 
-            this.textBox3.Location = new System.Drawing.Point(316, 193);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(259, 32);
-            this.textBox3.TabIndex = 18;
+            this.CostTb.Enabled = false;
+            this.CostTb.Location = new System.Drawing.Point(316, 193);
+            this.CostTb.Name = "CostTb";
+            this.CostTb.Size = new System.Drawing.Size(259, 32);
+            this.CostTb.TabIndex = 18;
             // 
             // label11
             // 
@@ -173,12 +177,12 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "Result";
             // 
-            // textBox4
+            // ResultTb
             // 
-            this.textBox4.Location = new System.Drawing.Point(316, 99);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(259, 32);
-            this.textBox4.TabIndex = 16;
+            this.ResultTb.Location = new System.Drawing.Point(316, 99);
+            this.ResultTb.Name = "ResultTb";
+            this.ResultTb.Size = new System.Drawing.Size(259, 32);
+            this.ResultTb.TabIndex = 16;
             // 
             // label9
             // 
@@ -191,13 +195,6 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "Test";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(31, 193);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(236, 32);
-            this.textBox2.TabIndex = 14;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -209,13 +206,6 @@
             this.label8.TabIndex = 13;
             this.label8.Text = "Patient";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(31, 99);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 32);
-            this.textBox1.TabIndex = 12;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -225,6 +215,7 @@
             this.dataGridView1.RowTemplate.Height = 26;
             this.dataGridView1.Size = new System.Drawing.Size(1055, 306);
             this.dataGridView1.TabIndex = 26;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label7
             // 
@@ -240,24 +231,34 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.dateTimePicker1);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.TestCb);
+            this.panel3.Controls.Add(this.PatientCb);
+            this.panel3.Controls.Add(this.DiagDateTb);
+            this.panel3.Controls.Add(this.DeleteBtn);
+            this.panel3.Controls.Add(this.SaveBtn);
+            this.panel3.Controls.Add(this.EditBtn);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.textBox3);
+            this.panel3.Controls.Add(this.CostTb);
             this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.textBox4);
+            this.panel3.Controls.Add(this.ResultTb);
             this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.textBox2);
             this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Location = new System.Drawing.Point(21, 26);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1105, 243);
             this.panel3.TabIndex = 0;
+            // 
+            // DiagDateTb
+            // 
+            this.DiagDateTb.CalendarForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.DiagDateTb.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DiagDateTb.Location = new System.Drawing.Point(606, 99);
+            this.DiagDateTb.MinDate = new System.DateTime(2022, 11, 16, 0, 0, 0, 0);
+            this.DiagDateTb.Name = "DiagDateTb";
+            this.DiagDateTb.Size = new System.Drawing.Size(367, 32);
+            this.DiagDateTb.TabIndex = 25;
             // 
             // label5
             // 
@@ -415,15 +416,22 @@
             this.panel1.Size = new System.Drawing.Size(113, 697);
             this.panel1.TabIndex = 12;
             // 
-            // dateTimePicker1
+            // PatientCb
             // 
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(606, 99);
-            this.dateTimePicker1.MinDate = new System.DateTime(2022, 11, 16, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(367, 32);
-            this.dateTimePicker1.TabIndex = 25;
+            this.PatientCb.FormattingEnabled = true;
+            this.PatientCb.Location = new System.Drawing.Point(31, 103);
+            this.PatientCb.Name = "PatientCb";
+            this.PatientCb.Size = new System.Drawing.Size(236, 32);
+            this.PatientCb.TabIndex = 26;
+            // 
+            // TestCb
+            // 
+            this.TestCb.FormattingEnabled = true;
+            this.TestCb.Location = new System.Drawing.Point(31, 193);
+            this.TestCb.Name = "TestCb";
+            this.TestCb.Size = new System.Drawing.Size(236, 32);
+            this.TestCb.TabIndex = 27;
+            this.TestCb.SelectionChangeCommitted += new System.EventHandler(this.TestCb_SelectionChangeCommitted);
             // 
             // diagnostic
             // 
@@ -465,18 +473,16 @@
 
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button DeleteBtn;
+        private System.Windows.Forms.Button SaveBtn;
+        private System.Windows.Forms.Button EditBtn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox CostTb;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox ResultTb;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel3;
@@ -495,6 +501,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DiagDateTb;
+        private System.Windows.Forms.ComboBox TestCb;
+        private System.Windows.Forms.ComboBox PatientCb;
     }
 }
