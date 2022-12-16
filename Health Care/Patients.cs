@@ -13,6 +13,7 @@ namespace Health_Care
     public partial class Patients : Form
     {
         Functions Con;
+        int key = 0;
         public Patients()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Health_Care
 
         private void ShowPatients()
         {
-            string Query = "Select * from Table";
+            String Query = "Select * from PatientTb1";
             PatientsList.DataSource = Con.GetData(Query);
         }
 
@@ -49,8 +50,8 @@ namespace Health_Care
                 string BDate = DOBTb.Value.Date.ToString();
                 string Phone = PatPhoneTb.Text;
                 string Address = PatAddTb.Text;
-                string Query = "insert into Table values('{0}','{1}','{2}','{3}','{4}')";
-                Query = string.Format(Query, Patient, Gender, BDate, Phone);
+                string Query = "insert into PatientTb1 values('{0}','{1}','{2}','{3}','{4}')";
+                Query = string.Format(Query, Patient, Gender, BDate, Phone, Address);
                 Con.SetData(Query);
                 ShowPatients();
                 Clear();
@@ -88,7 +89,7 @@ namespace Health_Care
                 string DDate = DOBTb.Value.Date.ToString();
                 string Phone = PatPhoneTb.Text;
                 string Address = PatAddTb.Text;
-                string Query = "update Table set PatName = '{0}',PatGen = '{1}',PatDob = '{2}',PatPhone = '{3}',PatAdd = '{4}' where PatCode = {5}";
+                string Query = "update PatientTb1 set PatName = '{0}',PatGen = '{1}',PatDob = '{2}',PatPhone = '{3}',PatAdd = '{4}' where PatCode = {5}";
                 Query = string.Format(Query, Patient, Gender, DDate, Phone, Address,Key);
                 Con.SetData(Query);
                 ShowPatients();
@@ -113,13 +114,51 @@ namespace Health_Care
             }
             else
             {
-                string Query = "Delete from Table where PatCode = {0}";
+                string Query = "Delete from PatientTb1 where PatCode = {0}";
                 Query = string.Format(Query,Key);
                 Con.SetData(Query);
                 ShowPatients();
                 Clear();
                 MessageBox.Show("Patient Deleted!");
             }
+        }
+
+        private void PatNameTb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Patients Obj = new Patients();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Tests Obj = new Tests();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            diagnostic Obj = new diagnostic();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
         }
     }
 }

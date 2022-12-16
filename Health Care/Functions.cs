@@ -18,7 +18,7 @@ namespace Health_Care
 
         public Functions()
         {
-            ConStr = @"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\ethan\\OneDrive\\Documents\\Shadow.mdf;Integrated Security=True;Connect Timeout=30";
+            ConStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\ethan\OneDrive\Documents\HealthCareDB_v2.mdf;Integrated Security=True;Connect Timeout=30;Integrated Security=True;Connect Timeout=30";
             Con = new SqlConnection(ConStr);
             Cmd = new SqlCommand();
             Cmd.Connection = Con;
@@ -40,6 +40,7 @@ namespace Health_Care
                 Con.Open();
             }
 
+            Console.WriteLine(Query);
             Cmd.CommandText = Query;
             Cnt = Cmd.ExecuteNonQuery();
             Con.Close();

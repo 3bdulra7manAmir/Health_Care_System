@@ -33,11 +33,11 @@ namespace Health_Care
             {
                 MessageBox.Show("Missing Data!!!");
             }
-            else if (UnameTb.Text == "Admin" && PasswordTb.Text == "Password")
+            else if (UnameTb.Text == "A" && PasswordTb.Text == "A")
             {
                 Patients Obj = new Patients();
                 Obj.Show();
-                Obj.Hide();
+                this.Hide();
 
             }
             else
@@ -51,7 +51,7 @@ namespace Health_Care
         {
             Login Obj = new Login();
             Obj.Show();
-            Obj.Hide();
+            this.Hide();
         }
     }
 }

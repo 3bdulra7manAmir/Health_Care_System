@@ -13,19 +13,20 @@ namespace Health_Care
     public partial class diagnostic : Form
     {
         Functions Con;
+        int key = 0;
         public diagnostic()
         {
             InitializeComponent();
             Con = new Functions();
+            ShowDiagnosis();
             Getpatients();
             GetTest();
-            ShowDiagnosis();
         }
 
 
         private void GetCost()
         {
-            string Query = "Select * TestTb1 where TestCode = {0}";
+            string Query = "Select * from TestTb1 where TestCode = {0}";
             Query = string.Format(Query, TestCb.SelectedValue.ToString());
             foreach (DataRow dr in Con.GetData(Query).Rows)
             {
@@ -35,13 +36,13 @@ namespace Health_Care
 
         private void ShowDiagnosis()
         {
-            string Query = "select * from diagnosisTb1";
+            String Query = "select * from DiagnosisTb1";
             DiagnosisList.DataSource = Con.GetData(Query);
         }
 
         private void Getpatients()
         {
-            string Query = "Select * from Table";
+            string Query = "Select * from PatientTb1";
             PatientCb.DisplayMember = Con.GetData(Query).Columns["PatName"].ToString();
             PatientCb.ValueMember = Con.GetData(Query).Columns["PatCode"].ToString();
             PatientCb.DataSource = Con.GetData(Query);
@@ -76,7 +77,7 @@ namespace Health_Care
                 int Test = Convert.ToInt32(TestCb.SelectedValue.ToString());
                 int Cost = Convert.ToInt32(CostTb.Text);
                 string Result = ResultTb.Text;
-                string Query = "insert into diagnosisTb1 values('{0}','{1}','{2}','{3}','{4}')";
+                string Query = "insert into DiagnosisTb1 values('{0}','{1}','{2}','{3}','{4}')";
                 Query = string.Format(Query, DDate, Patient, Test, Cost, Result);
                 Con.SetData(Query);
                 ShowDiagnosis();
@@ -93,19 +94,7 @@ namespace Health_Care
         int Key = 0;
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DiagDateTb.Text = DiagnosisList.SelectedRows[0].Cells[1].Value.ToString();
-            PatientCb.SelectedItem = DiagnosisList.SelectedRows[0].Cells[2].Value.ToString();
-            TestCb.Text = DiagnosisList.SelectedRows[0].Cells[3].Value.ToString();
-            CostTb.Text = DiagnosisList.SelectedRows[0].Cells[4].Value.ToString();
-            ResultTb.Text = DiagnosisList.SelectedRows[0].Cells[5].Value.ToString();
-            if (CostTb.Text == "")
-            {
-                Key = 0;
-            }
-            else
-            {
-                Key = Convert.ToInt32(DiagnosisList.SelectedRows[0].Cells[0].Value.ToString());
-            }
+            
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
@@ -145,6 +134,56 @@ namespace Health_Care
                 Clear();
                 MessageBox.Show("Diagnosis Updated!");
             }
+        }
+
+        private void DiagnosisList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DiagDateTb.Text = DiagnosisList.SelectedRows[0].Cells[1].Value.ToString();
+            PatientCb.SelectedItem = DiagnosisList.SelectedRows[0].Cells[2].Value.ToString();
+            TestCb.Text = DiagnosisList.SelectedRows[0].Cells[3].Value.ToString();
+            CostTb.Text = DiagnosisList.SelectedRows[0].Cells[4].Value.ToString();
+            ResultTb.Text = DiagnosisList.SelectedRows[0].Cells[5].Value.ToString();
+            if (CostTb.Text == "")
+            {
+                Key = 0;
+            }
+            else
+            {
+                Key = Convert.ToInt32(DiagnosisList.SelectedRows[0].Cells[0].Value.ToString());
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Patients Obj = new Patients();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Tests Obj = new Tests();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            diagnostic Obj = new diagnostic();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
         }
     }
 }
